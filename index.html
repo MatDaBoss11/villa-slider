@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Villa Image Slider</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      background: #fff;
+      font-family: sans-serif;
+    }
+    .custom-image-slider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+    .image-pair {
+      display: flex;
+      gap: 20px;
+    }
+    .image-pair img {
+      width: 400px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      transition: opacity 0.3s ease-in-out;
+    }
+    .side-btn {
+      background: none;
+      color: black;
+      padding: 0;
+      border: none;
+      font-size: 36px;
+      cursor: pointer;
+    }
+    .side-btn:hover {
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="custom-image-slider">
+    <button id="prev-btn" class="side-btn">&#8592;</button>
+    <div class="image-pair">
+      <img id="img-left" src="images/img1.png" alt="Left Image">
+      <img id="img-right" src="images/img2.png" alt="Right Image">
+    </div>
+    <button id="next-btn" class="side-btn">&#8594;</button>
+  </div>
+
+  <script>
+    const imagePairs = [
+      { left: "images/img1.png", right: "images/img2.png" },
+      { left: "images/img3.png", right: "images/img4.png" },
+      { left: "images/img5.png", right: "images/img6.png" },
+      { left: "images/img7.png", right: "images/img8.png" },
+      { left: "images/img9.png", right: "images/img10.png" },
+      { left: "images/img11.png", right: "images/img12.png" },
+      { left: "images/img13.png", right: "images/img14.png" },
+      { left: "images/img15.png", right: "images/img16.png" },
+      { left: "images/img17.png", right: "images/img18.png" },
+      { left: "images/img19.png", right: "images/img20.png" },
+      { left: "images/img21.png", right: "images/img22.png" },
+      { left: "images/img23.png", right: "images/img24.png" },
+      { left: "images/img25.png", right: "images/img26.png" },
+      { left: "images/img27.png", right: "images/img28.png" }
+    ];
+
+    let currentIndex = 0;
+
+    const leftImg = document.getElementById('img-left');
+    const rightImg = document.getElementById('img-right');
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % imagePairs.length;
+      updateImages();
+    });
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + imagePairs.length) % imagePairs.length;
+      updateImages();
+    });
+
+    function updateImages() {
+      leftImg.src = imagePairs[currentIndex].left;
+      rightImg.src = imagePairs[currentIndex].right;
+    }
+  </script>
+</body>
+</html>
